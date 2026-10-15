@@ -1,0 +1,8 @@
+# Instruções e configurações locais de agentes
+/AGENTS.md
+/CLAUDE.md
+**/AGENTS.md
+**/CLAUDE.md
+**/agents/**
+**/.agents/**
+**/.claude/**
