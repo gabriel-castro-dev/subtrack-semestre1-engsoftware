@@ -242,3 +242,152 @@ select:focus-visible {
   background-color: var(--cor-info-fundo);
   font-size: 0.95rem;
 }
+
+/* ---------- 7. Componentes gerais ---------- */
+.cartao {
+  margin-bottom: var(--espaco-4);
+  padding: var(--espaco-4);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+}
+
+.subtitulo {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 1.15rem;
+}
+
+.texto-suave {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* Campos usados na pesquisa e nos formulários */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  margin: 0;
+}
+
+.campo label {
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+}
+
+.campo input:hover,
+.campo select:hover {
+  border-color: var(--cor-texto-suave);
+}
+
+/* ---------- 8. Layout da página inicial ---------- */
+.topo-pagina {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-4);
+}
+
+/* Resumo: três indicadores lado a lado */
+.resumo-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-4);
+  margin: 0 0 var(--espaco-3);
+}
+
+.resumo-item + .resumo-item {
+  padding-left: var(--espaco-4);
+  border-left: 1px solid var(--cor-borda);
+}
+
+.resumo-item dt {
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.resumo-item dd {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Renovações e nota sobre câmbio dividem a mesma linha */
+.paineis {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-4);
+}
+
+.renovacoes {
+  padding: var(--espaco-4);
+  border: 1px solid #ecd28a;
+  border-radius: var(--raio);
+  background-color: #fdf3d8;
+}
+
+.renovacoes-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.renovacoes-lista li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--espaco-4);
+  padding: var(--espaco-2) 0;
+  border-top: 1px solid #ecd28a;
+}
+
+.nota {
+  padding: var(--espaco-4);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.nota h2 {
+  color: var(--cor-texto);
+  font-size: 1.05rem;
+}
+
+.nota p {
+  margin: 0;
+}
+
+/* Pesquisa, filtros e ordenação em uma grade */
+.filtros {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: var(--espaco-3);
+  align-items: end;
+}
+
+.filtros-acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--espaco-2);
+  margin: 0;
+}

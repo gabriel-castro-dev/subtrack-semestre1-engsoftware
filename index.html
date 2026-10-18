@@ -23,47 +23,59 @@
   </header>
 
   <main class="conteudo">
-    <h1>Minhas assinaturas</h1>
-    <p>Veja seus custos e próximas renovações.</p>
-    <p><a href="pages/cadastro.html" class="botao botao-primario">+ Nova assinatura</a></p>
+    <div class="topo-pagina">
+      <div>
+        <h1>Minhas assinaturas</h1>
+        <p class="subtitulo">Veja seus custos e próximas renovações.</p>
+      </div>
+      <a href="pages/cadastro.html" class="botao botao-primario">+ Nova assinatura</a>
+    </div>
 
     <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. A pesquisa, os filtros, a ordenação e os botões de alteração ainda não processam nem salvam informações.</p>
 
-    <section>
+    <section class="cartao resumo">
       <h2>Resumo dos gastos</h2>
-      <dl>
-        <dt>Mensal equivalente</dt>
-        <dd>R$ 147,70</dd>
-        <dt>Anual estimado</dt>
-        <dd>R$ 1.772,40</dd>
-        <dt>Assinaturas ativas</dt>
-        <dd>5</dd>
+      <dl class="resumo-lista">
+        <div class="resumo-item">
+          <dt>Mensal equivalente</dt>
+          <dd>R$ 147,70</dd>
+        </div>
+        <div class="resumo-item">
+          <dt>Anual estimado</dt>
+          <dd>R$ 1.772,40</dd>
+        </div>
+        <div class="resumo-item">
+          <dt>Assinaturas ativas</dt>
+          <dd>5</dd>
+        </div>
       </dl>
-      <p>Somente assinaturas ativas entram no resumo. Assinaturas anuais são distribuídas em 12 meses.</p>
+      <p class="texto-suave">Somente assinaturas ativas entram no resumo. Assinaturas anuais são distribuídas em 12 meses.</p>
     </section>
 
-    <section>
-      <h2>Próximas renovações</h2>
-      <p>Próximos 7 dias: R$ 61,80.</p>
-      <ul>
-        <li>Spotify — <time datetime="2026-10-22">22/10/2026</time> — R$ 21,90</li>
-        <li>Netflix — <time datetime="2026-10-25">25/10/2026</time> — R$ 39,90</li>
-      </ul>
-    </section>
+    <div class="paineis">
+      <section class="renovacoes">
+        <h2>Próximas renovações</h2>
+        <p><strong>Próximos 7 dias: R$ 61,80</strong></p>
+        <ul class="renovacoes-lista">
+          <li><span>Spotify</span> <time datetime="2026-10-22">22/10/2026</time> <span>R$ 21,90</span></li>
+          <li><span>Netflix</span> <time datetime="2026-10-25">25/10/2026</time> <span>R$ 39,90</span></li>
+        </ul>
+      </section>
 
-    <aside>
-      <h2>Sobre a conversão de moeda</h2>
-      <p>Valores internacionais aparecem convertidos para reais com uma cotação ilustrativa: US$ 1,00 = R$ 5,00. Em uma etapa futura, a cotação será consultada na Frankfurter API.</p>
-    </aside>
+      <aside class="nota">
+        <h2>Sobre a conversão de moeda</h2>
+        <p>Valores internacionais aparecem convertidos para reais com uma cotação ilustrativa: US$ 1,00 = R$ 5,00. Em uma etapa futura, a cotação será consultada na Frankfurter API.</p>
+      </aside>
+    </div>
 
-    <section>
+    <section class="cartao">
       <h2>Pesquisar e organizar</h2>
-      <form>
-        <p>
+      <form class="filtros">
+        <p class="campo campo-busca">
           <label for="busca">Buscar serviço</label>
           <input type="search" id="busca" name="busca">
         </p>
-        <p>
+        <p class="campo">
           <label for="filtro-categoria">Categoria</label>
           <select id="filtro-categoria" name="categoria">
             <option value="todas">Todas as categorias</option>
@@ -75,7 +87,7 @@
             <option value="outros">Outros</option>
           </select>
         </p>
-        <p>
+        <p class="campo">
           <label for="filtro-status">Status</label>
           <select id="filtro-status" name="status">
             <option value="todos">Todos os status</option>
@@ -83,7 +95,7 @@
             <option value="inativa">Inativa</option>
           </select>
         </p>
-        <p>
+        <p class="campo">
           <label for="ordenacao">Ordenar por</label>
           <select id="ordenacao" name="ordenacao">
             <option value="renovacao">Próxima renovação</option>
@@ -92,9 +104,9 @@
             <option value="maior-valor">Maior valor</option>
           </select>
         </p>
-        <p>
-          <button type="button">Aplicar</button>
-          <button type="reset">Limpar filtros</button>
+        <p class="filtros-acoes">
+          <button type="button" class="botao botao-primario">Aplicar</button>
+          <button type="reset" class="botao botao-secundario">Limpar filtros</button>
         </p>
       </form>
     </section>
