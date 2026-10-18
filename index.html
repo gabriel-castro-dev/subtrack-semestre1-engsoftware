@@ -4,24 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minhas assinaturas | SubTrack — Controle de Assinaturas</title>
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-  <header>
-    <p><a href="index.html"><strong>SubTrack</strong></a> — Controle de Assinaturas</p>
-    <nav aria-label="Navegação principal">
-      <ul>
-        <li><a href="index.html" aria-current="page">Assinaturas</a></li>
-        <li><a href="pages/cadastro.html">Nova assinatura</a></li>
-      </ul>
-    </nav>
+  <header class="cabecalho">
+    <div class="cabecalho-conteudo">
+      <p class="marca">
+        <a href="index.html" class="marca-link"><span class="marca-icone" aria-hidden="true">S</span> SubTrack</a>
+        <span class="marca-descricao">Controle de Assinaturas</span>
+      </p>
+      <nav class="menu" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Assinaturas</a></li>
+          <li><a href="pages/cadastro.html">Nova assinatura</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="conteudo">
     <h1>Minhas assinaturas</h1>
     <p>Veja seus custos e próximas renovações.</p>
-    <p><a href="pages/cadastro.html">Nova assinatura</a></p>
+    <p><a href="pages/cadastro.html" class="botao botao-primario">+ Nova assinatura</a></p>
 
-    <p><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. A pesquisa, os filtros, a ordenação e os botões de alteração ainda não processam nem salvam informações.</p>
+    <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. A pesquisa, os filtros, a ordenação e os botões de alteração ainda não processam nem salvam informações.</p>
 
     <section>
       <h2>Resumo dos gastos</h2>
@@ -200,8 +206,8 @@
     </section>
   </main>
 
-  <footer>
-    <p>SubTrack — Etapa 1: estrutura da interface em HTML.</p>
+  <footer class="rodape">
+    <p>SubTrack — Etapa 2: interface com HTML e CSS.</p>
   </footer>
 </body>
 </html>

@@ -1,0 +1,244 @@
+/* ==========================================================
+   SubTrack — Folha de estilos
+   ========================================================== */
+
+/* ---------- 1. Variáveis da identidade visual ---------- */
+:root {
+  /* Cores */
+  --cor-fundo: #f6f5f2;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1c1f23;
+  --cor-texto-suave: #57606a;
+  --cor-borda: #d8dadd;
+  --cor-primaria: #1f2421;
+  --cor-primaria-hover: #3a413d;
+  --cor-foco: #2563eb;
+  --cor-info-fundo: #eef2f7;
+  --cor-info-borda: #c9d4e3;
+
+  /* Tipografia */
+  --fonte-titulo: Georgia, "Times New Roman", serif;
+  --fonte-texto: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Espaçamentos e bordas */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 1rem;
+  --espaco-4: 1.5rem;
+  --espaco-5: 2rem;
+  --raio: 0.5rem;
+  --largura-maxima: 72rem;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--espaco-2);
+  line-height: 1.2;
+}
+
+h1 {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 var(--espaco-3);
+}
+
+a {
+  color: var(--cor-texto);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--cor-primaria-hover);
+}
+
+/* Foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+}
+
+/* ---------- 3. Cabeçalho e navegação ---------- */
+.cabecalho {
+  background-color: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 0 var(--espaco-3);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--espaco-2) var(--espaco-3);
+  margin: 0;
+  padding: var(--espaco-3) 0;
+}
+
+.marca-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.marca-icone {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--raio);
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  font-size: 1.125rem;
+}
+
+.marca-descricao {
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.menu ul {
+  display: flex;
+  gap: var(--espaco-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  display: block;
+  padding: var(--espaco-4) 0 calc(var(--espaco-4) - 3px);
+  border-bottom: 3px solid transparent;
+  color: var(--cor-texto-suave);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: var(--cor-texto);
+  border-bottom-color: var(--cor-borda);
+}
+
+.menu a[aria-current="page"] {
+  color: var(--cor-texto);
+  border-bottom-color: var(--cor-primaria);
+}
+
+/* ---------- 4. Conteúdo principal e rodapé ---------- */
+.conteudo {
+  flex: 1;
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espaco-5) var(--espaco-3);
+}
+
+.rodape {
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.rodape p {
+  margin: 0;
+  padding: var(--espaco-4) var(--espaco-3);
+}
+
+/* ---------- 5. Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  min-height: 2.75rem;
+  padding: var(--espaco-2) var(--espaco-4);
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.botao:active {
+  transform: translateY(1px);
+}
+
+.botao-primario {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+}
+
+.botao-primario:hover {
+  background-color: var(--cor-primaria-hover);
+  color: #ffffff;
+}
+
+.botao-secundario {
+  background-color: var(--cor-superficie);
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.botao-secundario:hover {
+  border-color: var(--cor-texto-suave);
+  color: var(--cor-texto);
+}
+
+/* ---------- 6. Mensagens ---------- */
+.aviso {
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-info-borda);
+  border-left-width: 4px;
+  border-radius: var(--raio);
+  background-color: var(--cor-info-fundo);
+  font-size: 0.95rem;
+}
