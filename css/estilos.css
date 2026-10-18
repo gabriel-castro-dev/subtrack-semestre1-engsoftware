@@ -391,3 +391,158 @@ select:focus-visible {
   gap: var(--espaco-2);
   margin: 0;
 }
+
+/* ---------- 9. Listagem de assinaturas ---------- */
+.tabela-container {
+  overflow-x: auto;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tabela caption {
+  padding: var(--espaco-3) var(--espaco-4);
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.tabela th,
+.tabela td {
+  padding: var(--espaco-3);
+  border-top: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabela thead th {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tabela tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tabela tbody tr:hover {
+  background-color: #fafaf8;
+}
+
+/* Linhas inativas ficam com aparência mais discreta */
+.linha-inativa {
+  color: var(--cor-texto-suave);
+}
+
+.linha-inativa .avatar {
+  opacity: 0.6;
+}
+
+/* Iniciais dos serviços */
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: var(--espaco-2);
+  border-radius: var(--raio);
+  color: #ffffff;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.avatar-verde { background-color: #1d7a3a; }
+.avatar-vermelho { background-color: #b81d24; }
+.avatar-escuro { background-color: var(--cor-primaria); }
+.avatar-azul { background-color: #1f5fbf; }
+.avatar-marinho { background-color: #10265c; }
+.avatar-roxo { background-color: #5b4a9e; }
+
+/* Etiquetas de status: cor + texto */
+.status {
+  display: inline-block;
+  padding: var(--espaco-1) var(--espaco-3);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-ativa {
+  background-color: #e3f1e6;
+  color: #1d5e2c;
+}
+
+.status-inativa {
+  background-color: #e9eaec;
+  color: #3f454c;
+}
+
+/* Renovação nos próximos 7 dias */
+.renovacao-proxima time {
+  padding: 0.125rem var(--espaco-2);
+  border-radius: 0.25rem;
+  background-color: #fdf3d8;
+  font-weight: 600;
+}
+
+/* Ações de cada linha */
+.acoes {
+  white-space: nowrap;
+}
+
+.acao + .acao {
+  margin-left: var(--espaco-1);
+}
+
+/* Valor aproximado em reais abaixo do valor original */
+.valor-convertido {
+  display: block;
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.acao {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: var(--espaco-1) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.acao:hover {
+  border-color: var(--cor-texto-suave);
+  background-color: var(--cor-fundo);
+}
+
+.acao-excluir {
+  color: #b42318;
+}
+
+.acao-excluir:hover {
+  border-color: #b42318;
+  background-color: #fdecea;
+  color: #8f1c13;
+}
+
+.lista > .texto-suave {
+  margin-top: var(--espaco-2);
+}

@@ -111,110 +111,112 @@
       </form>
     </section>
 
-    <section>
+    <section class="lista">
       <h2>Lista de assinaturas</h2>
-      <table>
-        <caption>Assinaturas cadastradas, ordenadas pela próxima renovação. As inativas ficam ao final.</caption>
-        <thead>
-          <tr>
-            <th scope="col">Serviço</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Valor</th>
-            <th scope="col">Moeda</th>
-            <th scope="col">Periodicidade</th>
-            <th scope="col">Renovação</th>
-            <th scope="col">Status</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Spotify</th>
-            <td>Música</td>
-            <td>R$ 21,90</td>
-            <td>BRL</td>
-            <td>Mensal</td>
-            <td><time datetime="2026-10-22">22/10/2026</time></td>
-            <td>Ativa</td>
-            <td>
-              <button type="button">Ver detalhes</button>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Netflix</th>
-            <td>Vídeo</td>
-            <td>R$ 39,90</td>
-            <td>BRL</td>
-            <td>Mensal</td>
-            <td><time datetime="2026-10-25">25/10/2026</time></td>
-            <td>Ativa</td>
-            <td>
-              <button type="button">Ver detalhes</button>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Notion</th>
-            <td>Produtividade</td>
-            <td>US$ 10,00 (aprox. R$ 50,00)</td>
-            <td>USD</td>
-            <td>Mensal</td>
-            <td><time datetime="2026-10-29">29/10/2026</time></td>
-            <td>Ativa</td>
-            <td>
-              <a href="pages/detalhes.html">Ver detalhes</a>
-              <a href="pages/editar.html">Editar</a>
-              <a href="pages/excluir.html">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">iCloud+</th>
-            <td>Armazenamento</td>
-            <td>R$ 5,90</td>
-            <td>BRL</td>
-            <td>Mensal</td>
-            <td><time datetime="2026-11-03">03/11/2026</time></td>
-            <td>Ativa</td>
-            <td>
-              <button type="button">Ver detalhes</button>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Alura</th>
-            <td>Educação</td>
-            <td>R$ 360,00</td>
-            <td>BRL</td>
-            <td>Anual</td>
-            <td><time datetime="2027-06-12">12/06/2027</time></td>
-            <td>Ativa</td>
-            <td>
-              <button type="button">Ver detalhes</button>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Disney+</th>
-            <td>Vídeo</td>
-            <td>R$ 43,90</td>
-            <td>BRL</td>
-            <td>Mensal</td>
-            <td><time datetime="2026-10-17">17/10/2026</time></td>
-            <td>Inativa</td>
-            <td>
-              <button type="button">Ver detalhes</button>
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>6 assinaturas cadastradas. Nesta etapa, apenas o Notion possui páginas de exemplo para detalhes, edição e exclusão.</p>
+      <div class="tabela-container">
+        <table class="tabela">
+          <caption>Assinaturas cadastradas, ordenadas pela próxima renovação. As inativas ficam ao final.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Serviço</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Moeda</th>
+              <th scope="col">Periodicidade</th>
+              <th scope="col">Renovação</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="avatar avatar-verde" aria-hidden="true">S</span> Spotify</th>
+              <td>Música</td>
+              <td>R$ 21,90</td>
+              <td>BRL</td>
+              <td>Mensal</td>
+              <td class="renovacao-proxima"><time datetime="2026-10-22">22/10/2026</time></td>
+              <td><span class="status status-ativa">Ativa</span></td>
+              <td class="acoes">
+                <button type="button" class="acao">Ver detalhes</button>
+                <button type="button" class="acao">Editar</button>
+                <button type="button" class="acao acao-excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="avatar avatar-vermelho" aria-hidden="true">N</span> Netflix</th>
+              <td>Vídeo</td>
+              <td>R$ 39,90</td>
+              <td>BRL</td>
+              <td>Mensal</td>
+              <td class="renovacao-proxima"><time datetime="2026-10-25">25/10/2026</time></td>
+              <td><span class="status status-ativa">Ativa</span></td>
+              <td class="acoes">
+                <button type="button" class="acao">Ver detalhes</button>
+                <button type="button" class="acao">Editar</button>
+                <button type="button" class="acao acao-excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="avatar avatar-escuro" aria-hidden="true">N</span> Notion</th>
+              <td>Produtividade</td>
+              <td>US$ 10,00 <span class="valor-convertido">(aprox. R$ 50,00)</span></td>
+              <td>USD</td>
+              <td>Mensal</td>
+              <td><time datetime="2026-10-29">29/10/2026</time></td>
+              <td><span class="status status-ativa">Ativa</span></td>
+              <td class="acoes">
+                <a href="pages/detalhes.html" class="acao">Ver detalhes</a>
+                <a href="pages/editar.html" class="acao">Editar</a>
+                <a href="pages/excluir.html" class="acao acao-excluir">Excluir</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="avatar avatar-azul" aria-hidden="true">I</span> iCloud+</th>
+              <td>Armazenamento</td>
+              <td>R$ 5,90</td>
+              <td>BRL</td>
+              <td>Mensal</td>
+              <td><time datetime="2026-11-03">03/11/2026</time></td>
+              <td><span class="status status-ativa">Ativa</span></td>
+              <td class="acoes">
+                <button type="button" class="acao">Ver detalhes</button>
+                <button type="button" class="acao">Editar</button>
+                <button type="button" class="acao acao-excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="avatar avatar-marinho" aria-hidden="true">A</span> Alura</th>
+              <td>Educação</td>
+              <td>R$ 360,00</td>
+              <td>BRL</td>
+              <td>Anual</td>
+              <td><time datetime="2027-06-12">12/06/2027</time></td>
+              <td><span class="status status-ativa">Ativa</span></td>
+              <td class="acoes">
+                <button type="button" class="acao">Ver detalhes</button>
+                <button type="button" class="acao">Editar</button>
+                <button type="button" class="acao acao-excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr class="linha-inativa">
+              <th scope="row"><span class="avatar avatar-roxo" aria-hidden="true">D</span> Disney+</th>
+              <td>Vídeo</td>
+              <td>R$ 43,90</td>
+              <td>BRL</td>
+              <td>Mensal</td>
+              <td><time datetime="2026-10-17">17/10/2026</time></td>
+              <td><span class="status status-inativa">Inativa</span></td>
+              <td class="acoes">
+                <button type="button" class="acao">Ver detalhes</button>
+                <button type="button" class="acao">Editar</button>
+                <button type="button" class="acao acao-excluir">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="texto-suave">6 assinaturas cadastradas. Nesta etapa, apenas o Notion possui páginas de exemplo para detalhes, edição e exclusão.</p>
     </section>
   </main>
 
