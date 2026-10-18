@@ -19,6 +19,185 @@
   <main>
     <h1>Minhas assinaturas</h1>
     <p>Veja seus custos e próximas renovações.</p>
+    <p><a href="pages/cadastro.html">Nova assinatura</a></p>
+
+    <p><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. A pesquisa, os filtros, a ordenação e os botões de alteração ainda não processam nem salvam informações.</p>
+
+    <section>
+      <h2>Resumo dos gastos</h2>
+      <dl>
+        <dt>Mensal equivalente</dt>
+        <dd>R$ 147,70</dd>
+        <dt>Anual estimado</dt>
+        <dd>R$ 1.772,40</dd>
+        <dt>Assinaturas ativas</dt>
+        <dd>5</dd>
+      </dl>
+      <p>Somente assinaturas ativas entram no resumo. Assinaturas anuais são distribuídas em 12 meses.</p>
+    </section>
+
+    <section>
+      <h2>Próximas renovações</h2>
+      <p>Próximos 7 dias: R$ 61,80.</p>
+      <ul>
+        <li>Spotify — <time datetime="2026-10-22">22/10/2026</time> — R$ 21,90</li>
+        <li>Netflix — <time datetime="2026-10-25">25/10/2026</time> — R$ 39,90</li>
+      </ul>
+    </section>
+
+    <aside>
+      <h2>Sobre a conversão de moeda</h2>
+      <p>Valores internacionais aparecem convertidos para reais com uma cotação ilustrativa: US$ 1,00 = R$ 5,00. Em uma etapa futura, a cotação será consultada na Frankfurter API.</p>
+    </aside>
+
+    <section>
+      <h2>Pesquisar e organizar</h2>
+      <form>
+        <p>
+          <label for="busca">Buscar serviço</label>
+          <input type="search" id="busca" name="busca">
+        </p>
+        <p>
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria" name="categoria">
+            <option value="todas">Todas as categorias</option>
+            <option value="musica">Música</option>
+            <option value="video">Vídeo</option>
+            <option value="produtividade">Produtividade</option>
+            <option value="armazenamento">Armazenamento</option>
+            <option value="educacao">Educação</option>
+            <option value="outros">Outros</option>
+          </select>
+        </p>
+        <p>
+          <label for="filtro-status">Status</label>
+          <select id="filtro-status" name="status">
+            <option value="todos">Todos os status</option>
+            <option value="ativa">Ativa</option>
+            <option value="inativa">Inativa</option>
+          </select>
+        </p>
+        <p>
+          <label for="ordenacao">Ordenar por</label>
+          <select id="ordenacao" name="ordenacao">
+            <option value="renovacao">Próxima renovação</option>
+            <option value="nome">Nome de A a Z</option>
+            <option value="menor-valor">Menor valor</option>
+            <option value="maior-valor">Maior valor</option>
+          </select>
+        </p>
+        <p>
+          <button type="button">Aplicar</button>
+          <button type="reset">Limpar filtros</button>
+        </p>
+      </form>
+    </section>
+
+    <section>
+      <h2>Lista de assinaturas</h2>
+      <table>
+        <caption>Assinaturas cadastradas, ordenadas pela próxima renovação. As inativas ficam ao final.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Serviço</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Moeda</th>
+            <th scope="col">Periodicidade</th>
+            <th scope="col">Renovação</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Spotify</th>
+            <td>Música</td>
+            <td>R$ 21,90</td>
+            <td>BRL</td>
+            <td>Mensal</td>
+            <td><time datetime="2026-10-22">22/10/2026</time></td>
+            <td>Ativa</td>
+            <td>
+              <button type="button">Ver detalhes</button>
+              <button type="button">Editar</button>
+              <button type="button">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Netflix</th>
+            <td>Vídeo</td>
+            <td>R$ 39,90</td>
+            <td>BRL</td>
+            <td>Mensal</td>
+            <td><time datetime="2026-10-25">25/10/2026</time></td>
+            <td>Ativa</td>
+            <td>
+              <button type="button">Ver detalhes</button>
+              <button type="button">Editar</button>
+              <button type="button">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Notion</th>
+            <td>Produtividade</td>
+            <td>US$ 10,00 (aprox. R$ 50,00)</td>
+            <td>USD</td>
+            <td>Mensal</td>
+            <td><time datetime="2026-10-29">29/10/2026</time></td>
+            <td>Ativa</td>
+            <td>
+              <a href="pages/detalhes.html">Ver detalhes</a>
+              <a href="pages/editar.html">Editar</a>
+              <a href="pages/excluir.html">Excluir</a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">iCloud+</th>
+            <td>Armazenamento</td>
+            <td>R$ 5,90</td>
+            <td>BRL</td>
+            <td>Mensal</td>
+            <td><time datetime="2026-11-03">03/11/2026</time></td>
+            <td>Ativa</td>
+            <td>
+              <button type="button">Ver detalhes</button>
+              <button type="button">Editar</button>
+              <button type="button">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Alura</th>
+            <td>Educação</td>
+            <td>R$ 360,00</td>
+            <td>BRL</td>
+            <td>Anual</td>
+            <td><time datetime="2027-06-12">12/06/2027</time></td>
+            <td>Ativa</td>
+            <td>
+              <button type="button">Ver detalhes</button>
+              <button type="button">Editar</button>
+              <button type="button">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Disney+</th>
+            <td>Vídeo</td>
+            <td>R$ 43,90</td>
+            <td>BRL</td>
+            <td>Mensal</td>
+            <td><time datetime="2026-10-17">17/10/2026</time></td>
+            <td>Inativa</td>
+            <td>
+              <button type="button">Ver detalhes</button>
+              <button type="button">Editar</button>
+              <button type="button">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>6 assinaturas cadastradas. Nesta etapa, apenas o Notion possui páginas de exemplo para detalhes, edição e exclusão.</p>
+    </section>
   </main>
 
   <footer>
