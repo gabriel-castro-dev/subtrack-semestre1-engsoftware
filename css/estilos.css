@@ -546,3 +546,97 @@ select:focus-visible {
 .lista > .texto-suave {
   margin-top: var(--espaco-2);
 }
+
+/* ---------- 10. Formulários de cadastro e edição ---------- */
+.conteudo-estreito {
+  max-width: 46rem;
+}
+
+.link-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  min-height: 2.75rem;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+}
+
+.link-voltar:hover {
+  color: var(--cor-texto);
+  text-decoration: underline;
+}
+
+.conteudo-estreito .subtitulo {
+  margin-bottom: var(--espaco-4);
+}
+
+.formulario {
+  padding: var(--espaco-5);
+}
+
+/* Campos em duas colunas; os campos largos ocupam a linha inteira */
+.formulario-campos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-4) var(--espaco-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.formulario-campos legend {
+  margin-bottom: var(--espaco-3);
+  padding: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.campo-largo {
+  grid-column: 1 / -1;
+}
+
+.campo-ajuda {
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
+
+/* Estados dos campos */
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--cor-foco);
+}
+
+.campo input:user-invalid,
+.campo select:user-invalid {
+  border-color: #b42318;
+  background-color: #fdecea;
+}
+
+/* Estimativa em reais */
+.estimativa {
+  margin-top: var(--espaco-4);
+  padding: var(--espaco-3) var(--espaco-4);
+  border-radius: var(--raio);
+  background-color: #e3f1e6;
+  color: #1d5e2c;
+}
+
+.estimativa h2 {
+  font-size: 1rem;
+}
+
+.estimativa p {
+  margin: 0;
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+}
+
+.formulario-acoes {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin: var(--espaco-4) 0 0;
+  padding-top: var(--espaco-4);
+  border-top: 1px solid var(--cor-borda);
+}
