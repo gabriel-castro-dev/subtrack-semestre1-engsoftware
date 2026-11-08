@@ -114,6 +114,16 @@ function carregarAssinaturas() {
   }
 }
 
+// Procura uma assinatura pelo identificador
+function buscarAssinatura(id) {
+  return carregarAssinaturas().find((item) => item.id === id);
+}
+
+// Lê o parâmetro "id" do endereço da página (ex.: detalhes.html?id=notion)
+function obterIdDaUrl() {
+  return new URLSearchParams(window.location.search).get("id");
+}
+
 // ---------- Elementos da página ----------
 
 // Cria um elemento com classe e texto opcionais

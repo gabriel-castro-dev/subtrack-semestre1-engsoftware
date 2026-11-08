@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalhes da assinatura Notion | SubTrack — Controle de Assinaturas</title>
+  <title>Detalhes da assinatura | SubTrack — Controle de Assinaturas</title>
   <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
@@ -25,50 +25,54 @@
   <main class="conteudo conteudo-estreito">
     <p><a href="../index.html" class="link-voltar"><span aria-hidden="true">←</span> Voltar para assinaturas</a></p>
     <h1>Detalhes da assinatura</h1>
-    <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos.</p>
+    <p id="mensagem-sucesso" class="mensagem mensagem-sucesso" role="status" hidden></p>
 
-    <article class="cartao detalhes">
+    <article id="detalhes-assinatura" class="cartao detalhes" hidden>
       <div class="detalhes-topo">
-        <span class="avatar avatar-escuro" aria-hidden="true">N</span>
-        <h2>Notion</h2>
-        <span class="status status-ativa">Ativa</span>
+        <span id="detalhes-avatar" class="avatar" aria-hidden="true"></span>
+        <h2 id="detalhes-nome"></h2>
+        <span id="detalhes-status"></span>
       </div>
 
       <dl class="detalhes-lista">
         <dt>Nome do serviço</dt>
-        <dd>Notion</dd>
+        <dd data-campo="nome"></dd>
         <dt>Categoria</dt>
-        <dd>Produtividade</dd>
+        <dd data-campo="categoria"></dd>
         <dt>Valor original</dt>
-        <dd>US$ 10,00</dd>
+        <dd data-campo="valor"></dd>
         <dt>Moeda</dt>
-        <dd>USD — Dólar americano</dd>
+        <dd data-campo="moeda"></dd>
         <dt>Periodicidade</dt>
-        <dd>Mensal</dd>
+        <dd data-campo="periodicidade"></dd>
         <dt>Data de renovação</dt>
-        <dd><time datetime="2026-10-29">29/10/2026</time></dd>
+        <dd data-campo="renovacao"></dd>
+        <dt>Situação da renovação</dt>
+        <dd data-campo="prazo"></dd>
         <dt>Status</dt>
-        <dd>Ativa</dd>
-        <dt>Valor aproximado em reais</dt>
-        <dd>R$ 50,00 por mês</dd>
+        <dd data-campo="status"></dd>
       </dl>
 
       <h3>Ações</h3>
       <ul class="lista-acoes">
-        <li><a href="editar.html" class="botao botao-primario">Editar assinatura</a></li>
-        <li><a href="excluir.html" class="botao botao-perigo-contorno">Excluir assinatura</a></li>
+        <li><a id="link-editar" href="editar.html" class="botao botao-primario">Editar assinatura</a></li>
+        <li><a id="link-excluir" href="excluir.html" class="botao botao-perigo-contorno">Excluir assinatura</a></li>
         <li><a href="../index.html" class="botao botao-secundario">Voltar para a lista de assinaturas</a></li>
       </ul>
     </article>
 
-    <aside class="nota">
-      <h2>Sobre a conversão</h2>
-      <p>O valor em reais é uma estimativa feita com a cotação ilustrativa US$ 1,00 = R$ 5,00. Em uma etapa futura, a cotação será consultada na Frankfurter API. O valor cobrado pode mudar até a data da cobrança.</p>
-    </aside>
+    <div id="nao-encontrada" class="estado-vazio" hidden>
+      <h2>Assinatura não encontrada</h2>
+      <p>Ela pode ter sido excluída ou o endereço está incompleto.</p>
+      <a href="../index.html" class="botao botao-primario">Ver todas as assinaturas</a>
+    </div>
   </main>
 
   <footer class="rodape">
     <p>SubTrack — Etapa 2: interface com HTML e CSS.</p>
   </footer>
+
+  <script src="../js/dados.js"></script>
+  <script src="../js/detalhes.js"></script>
 </body>
 </html>
