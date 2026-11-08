@@ -97,6 +97,7 @@ function lerFiltros() {
     busca: normalizar(formularioFiltros.elements.busca.value.trim()),
     categoria: formularioFiltros.elements.categoria.value,
     status: formularioFiltros.elements.status.value,
+    ordenacao: formularioFiltros.elements.ordenacao.value,
   };
 }
 
@@ -109,9 +110,42 @@ function filtrarAssinaturas(lista, filtros) {
   });
 }
 
+// ---------- Ordenação ----------
+
+// Valor usado para comparar preços
+function valorParaComparar(item) {
+  return item.valor;
+}
+
+function compararRenovacao(a, b) {
+  // As inativas ficam sempre no final da lista
+  if (a.status !== b.status) return a.status === "ativa" ? -1 : 1;
+  return a.renovacao.localeCompare(b.renovacao);
+}
+
+function ordenarAssinaturas(lista, criterio) {
+  const copia = [...lista];
+
+  switch (criterio) {
+    case "nome":
+      copia.sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+      break;
+    case "menor-valor":
+      copia.sort((a, b) => valorParaComparar(a) - valorParaComparar(b));
+      break;
+    case "maior-valor":
+      copia.sort((a, b) => valorParaComparar(b) - valorParaComparar(a));
+      break;
+    default:
+      copia.sort(compararRenovacao);
+  }
+  return copia;
+}
+
 function atualizarLista() {
-  const resultado = filtrarAssinaturas(assinaturas, lerFiltros());
-  renderizarLista(resultado);
+  const filtros = lerFiltros();
+  const filtradas = filtrarAssinaturas(assinaturas, filtros);
+  renderizarLista(ordenarAssinaturas(filtradas, filtros.ordenacao));
 }
 
 // A lista é atualizada enquanto a pessoa digita ou troca um filtro
