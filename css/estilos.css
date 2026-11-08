@@ -47,6 +47,7 @@ body {
   font-family: var(--fonte-texto);
   font-size: 1rem;
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -742,4 +743,139 @@ select:focus-visible {
   grid-template-columns: 1fr 1fr;
   gap: var(--espaco-3);
   margin: var(--espaco-4) 0 0;
+}
+
+/* ---------- 13. Responsividade ---------- */
+
+/* Tablets e celulares: até 768px */
+@media (max-width: 48rem) {
+  .cabecalho-conteudo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .marca {
+    padding-bottom: var(--espaco-2);
+  }
+
+  .menu ul {
+    gap: var(--espaco-3);
+  }
+
+  .menu a {
+    padding: var(--espaco-2) 0 calc(var(--espaco-2) + 1px);
+  }
+
+  .conteudo {
+    padding: var(--espaco-4) var(--espaco-3);
+  }
+
+  /* Indicadores do resumo em uma coluna */
+  .resumo-lista {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-3);
+  }
+
+  .resumo-item + .resumo-item {
+    padding-left: 0;
+    padding-top: var(--espaco-3);
+    border-left: 0;
+    border-top: 1px solid var(--cor-borda);
+  }
+
+  /* Renovações e câmbio um abaixo do outro */
+  .paineis {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pesquisa ocupa a linha inteira; filtros em duas colunas */
+  .filtros {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .campo-busca {
+    grid-column: 1 / -1;
+  }
+
+  /* Formulário em uma coluna */
+  .formulario {
+    padding: var(--espaco-4);
+  }
+
+  .formulario-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmacao {
+    padding: var(--espaco-4);
+  }
+}
+
+/* Celulares pequenos: até 480px */
+@media (max-width: 30rem) {
+  .marca-descricao {
+    flex-basis: 100%;
+  }
+
+  .topo-pagina .botao,
+  .filtros-acoes .botao,
+  .lista-acoes .botao {
+    width: 100%;
+  }
+
+  .filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros-acoes,
+  .lista-acoes {
+    flex-direction: column;
+  }
+
+  .lista-acoes li {
+    width: 100%;
+  }
+
+  /* Botão principal aparece primeiro e os dois ocupam a largura toda */
+  .formulario-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .confirmacao-acoes {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmacao-acoes .botao-perigo {
+    order: -1;
+  }
+
+  /* Termo acima do valor nas listas de descrição */
+  .detalhes-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .detalhes-lista dt {
+    padding-bottom: 0;
+  }
+
+  .detalhes-lista dd {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .renovacoes-lista li {
+    grid-template-columns: 1fr auto;
+    gap: 0 var(--espaco-3);
+  }
+
+  .renovacoes-lista time {
+    grid-row: 2;
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+  }
+
+  .resumo-item dd {
+    font-size: 1.75rem;
+  }
 }
