@@ -640,3 +640,106 @@ select:focus-visible {
   padding-top: var(--espaco-4);
   border-top: 1px solid var(--cor-borda);
 }
+
+/* ---------- 11. Detalhes da assinatura ---------- */
+.detalhes-topo {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-4);
+}
+
+.detalhes-topo h2 {
+  flex: 1;
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+}
+
+.detalhes-topo .avatar {
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* Lista de descrição em duas colunas: termo e valor */
+.detalhes-lista {
+  display: grid;
+  grid-template-columns: minmax(10rem, max-content) 1fr;
+  margin: 0 0 var(--espaco-4);
+}
+
+.detalhes-lista dt,
+.detalhes-lista dd {
+  margin: 0;
+  padding: var(--espaco-2) var(--espaco-3) var(--espaco-2) 0;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.detalhes-lista dt {
+  color: var(--cor-texto-suave);
+}
+
+.detalhes-lista dd {
+  font-weight: 600;
+}
+
+.lista-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- 12. Exclusão ---------- */
+.botao-perigo {
+  background-color: #b42318;
+  color: #ffffff;
+}
+
+.botao-perigo:hover {
+  background-color: #8f1c13;
+}
+
+.botao-perigo-contorno {
+  background-color: var(--cor-superficie);
+  border-color: #b42318;
+  color: #b42318;
+}
+
+.botao-perigo-contorno:hover {
+  background-color: #fdecea;
+  color: #8f1c13;
+}
+
+.confirmacao {
+  padding: var(--espaco-5);
+  border-top: 4px solid #b42318;
+}
+
+.confirmacao .subtitulo {
+  margin-bottom: var(--espaco-4);
+}
+
+.confirmacao-item h2 {
+  font-size: 1rem;
+}
+
+.alerta-perigo {
+  padding: var(--espaco-3);
+  border: 1px solid #f1b8b2;
+  border-left-width: 4px;
+  border-radius: var(--raio);
+  background-color: #fdecea;
+  color: #6b1610;
+}
+
+.confirmacao-acoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco-3);
+  margin: var(--espaco-4) 0 0;
+}
