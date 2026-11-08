@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excluir assinatura Notion | SubTrack — Controle de Assinaturas</title>
+  <title>Excluir assinatura | SubTrack — Controle de Assinaturas</title>
   <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
@@ -25,34 +25,42 @@
   <main class="conteudo conteudo-estreito">
     <p><a href="../index.html" class="link-voltar"><span aria-hidden="true">←</span> Voltar para assinaturas</a></p>
 
-    <div class="cartao confirmacao">
+    <div id="confirmacao-exclusao" class="cartao confirmacao" hidden>
       <h1>Excluir assinatura?</h1>
-      <p class="subtitulo">Notion será removida da sua lista. Essa ação não pode ser desfeita.</p>
+      <p class="subtitulo"><strong id="excluir-nome"></strong> será removida da sua lista. Essa ação não pode ser desfeita.</p>
 
       <section class="confirmacao-item">
         <h2>Assinatura selecionada</h2>
         <dl class="detalhes-lista">
           <dt>Serviço</dt>
-          <dd>Notion</dd>
+          <dd data-campo="nome"></dd>
           <dt>Categoria</dt>
-          <dd>Produtividade</dd>
+          <dd data-campo="categoria"></dd>
           <dt>Valor</dt>
-          <dd>US$ 10,00 por mês (aprox. R$ 50,00)</dd>
+          <dd data-campo="valor"></dd>
         </dl>
       </section>
 
       <p class="alerta-perigo"><strong>Importante:</strong> excluir o cadastro no SubTrack não cancela a assinatura no serviço contratado. Para cancelar a cobrança, acesse o próprio serviço.</p>
-      <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. O botão "Excluir assinatura" ainda não remove informações.</p>
 
       <p class="confirmacao-acoes">
-        <a href="../index.html" class="botao botao-secundario">Cancelar</a>
-        <button type="button" class="botao botao-perigo">Excluir assinatura</button>
+        <a id="link-cancelar" href="../index.html" class="botao botao-secundario">Cancelar</a>
+        <button id="botao-excluir" type="button" class="botao botao-perigo">Excluir assinatura</button>
       </p>
+    </div>
+
+    <div id="nao-encontrada" class="estado-vazio" hidden>
+      <h1>Assinatura não encontrada</h1>
+      <p>Ela pode já ter sido excluída ou o endereço está incompleto.</p>
+      <a href="../index.html" class="botao botao-primario">Ver todas as assinaturas</a>
     </div>
   </main>
 
   <footer class="rodape">
     <p>SubTrack — Etapa 2: interface com HTML e CSS.</p>
   </footer>
+
+  <script src="../js/dados.js"></script>
+  <script src="../js/excluir.js"></script>
 </body>
 </html>
