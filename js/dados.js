@@ -161,3 +161,41 @@ function exibirMensagemGuardada(elemento) {
   elemento.textContent = texto;
   elemento.hidden = false;
 }
+
+// ---------- Cotações (Frankfurter API) ----------
+
+const URL_COTACOES = "https://api.frankfurter.dev/v1/latest";
+
+// Consulta quanto vale 1 unidade da moeda em reais
+async function buscarCotacao(moeda) {
+  const resposta = await fetch(`${URL_COTACOES}?base=${moeda}&symbols=BRL`);
+  if (!resposta.ok) {
+    throw new Error(`A API respondeu com o código ${resposta.status}.`);
+  }
+  return resposta.json();
+}
+
+// Retorna, por exemplo: { BRL: 1, USD: 5.50, EUR: 6.37, data: "2026-11-06" }
+async function buscarCotacoes() {
+  const [dolar, euro] = await Promise.all([buscarCotacao("USD"), buscarCotacao("EUR")]);
+  return { BRL: 1, USD: dolar.rates.BRL, EUR: euro.rates.BRL, data: dolar.date };
+}
+
+// Converte um valor para reais. Retorna null se a cotação não estiver disponível.
+function converterParaReais(valor, moeda, cotacoes) {
+  if (moeda === "BRL") return valor;
+  if (!cotacoes || !cotacoes[moeda]) return null;
+  return valor * cotacoes[moeda];
+}
+
+// Valor mensal equivalente em reais (assinaturas anuais são divididas por 12)
+function valorMensalEmReais(assinatura, cotacoes) {
+  const emReais = converterParaReais(assinatura.valor, assinatura.moeda, cotacoes);
+  if (emReais === null) return null;
+  return assinatura.periodicidade === "anual" ? emReais / 12 : emReais;
+}
+
+// "US$ 1,00 = R$ 5,50 · € 1,00 = R$ 6,37"
+function descreverCotacoes(cotacoes) {
+  return `${formatarMoeda(1, "USD")} = ${formatarMoeda(cotacoes.USD)} · ${formatarMoeda(1, "EUR")} = ${formatarMoeda(cotacoes.EUR)}`;
+}

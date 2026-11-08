@@ -87,9 +87,11 @@
         </p>
       </fieldset>
 
-      <aside class="estimativa">
-        <h2>Conversão para reais</h2>
-        <p>Em uma etapa futura, valores em USD ou EUR serão convertidos para reais com a cotação da Frankfurter API. Exemplo ilustrativo, com a cotação fictícia US$ 1,00 = R$ 5,00: uma assinatura de US$ 10,00 por mês corresponde a aproximadamente R$ 50,00 por mês.</p>
+      <aside class="estimativa" aria-live="polite">
+        <h2>Estimativa em reais</h2>
+        <p id="estimativa-valor" class="estimativa-valor">Preencha o valor para ver a estimativa.</p>
+        <p id="estimativa-detalhe"></p>
+        <button id="tentar-cotacao" type="button" class="botao botao-secundario" hidden>Tentar novamente</button>
       </aside>
 
       <p class="formulario-acoes">

@@ -63,8 +63,10 @@
       </section>
 
       <aside class="nota">
-        <h2>Sobre a conversão de moeda</h2>
-        <p>Valores internacionais aparecem convertidos para reais com uma cotação ilustrativa: US$ 1,00 = R$ 5,00. Em uma etapa futura, a cotação será consultada na Frankfurter API.</p>
+        <h2>Cotação do dia</h2>
+        <p id="cotacao-texto" class="cotacao-texto" aria-live="polite">Consultando cotação…</p>
+        <p>Valores em dólar e euro são convertidos para reais com a cotação de referência da Frankfurter API.</p>
+        <button id="tentar-cotacao" type="button" class="botao botao-secundario" hidden>Tentar novamente</button>
       </aside>
     </div>
 

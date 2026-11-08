@@ -945,3 +945,25 @@ select:focus-visible {
   background-color: #fdecea;
   color: #8f1c13;
 }
+
+/* ---------- 16. Cotação do dia ---------- */
+.nota .cotacao-texto {
+  margin-bottom: var(--espaco-2);
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+
+.nota .botao {
+  margin-top: var(--espaco-3);
+}
+
+.estimativa .estimativa-valor {
+  margin-bottom: var(--espaco-1);
+  color: #1d5e2c;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.estimativa .botao {
+  margin-top: var(--espaco-3);
+}

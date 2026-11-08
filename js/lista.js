@@ -11,6 +11,8 @@ const formularioFiltros = document.querySelector("#filtros");
 const semResultados = document.querySelector("#sem-resultados");
 
 let assinaturas = carregarAssinaturas();
+let cotacoes = null;        // preenchido quando a Frankfurter API responder
+let erroCotacao = false;
 
 function criarLinkAcao(texto, pagina, id, classeExtra = "") {
   const link = criarElemento("a", `acao ${classeExtra}`.trim(), texto);
@@ -35,6 +37,13 @@ function criarCelulaRenovacao(assinatura) {
   return celula;
 }
 
+// Texto exibido abaixo dos valores em dólar ou euro
+function textoConvertido(assinatura) {
+  const emReais = converterParaReais(assinatura.valor, assinatura.moeda, cotacoes);
+  if (emReais !== null) return `(aprox. ${formatarMoeda(emReais)})`;
+  return erroCotacao ? "(cotação indisponível)" : "(consultando cotação…)";
+}
+
 function criarLinha(assinatura) {
   const linha = document.createElement("tr");
   if (assinatura.status === "inativa") linha.classList.add("linha-inativa");
@@ -44,6 +53,9 @@ function criarLinha(assinatura) {
   servico.append(criarAvatar(assinatura), " ", assinatura.nome);
 
   const valor = criarElemento("td", "", formatarMoeda(assinatura.valor, assinatura.moeda));
+  if (assinatura.moeda !== "BRL") {
+    valor.append(criarElemento("span", "valor-convertido", textoConvertido(assinatura)));
+  }
 
   const status = document.createElement("td");
   status.append(criarEtiquetaStatus(assinatura.status));
@@ -112,9 +124,10 @@ function filtrarAssinaturas(lista, filtros) {
 
 // ---------- Ordenação ----------
 
-// Valor usado para comparar preços
+// Valor usado para comparar preços: em reais quando a cotação estiver disponível
 function valorParaComparar(item) {
-  return item.valor;
+  const emReais = converterParaReais(item.valor, item.moeda, cotacoes);
+  return emReais === null ? item.valor : emReais;
 }
 
 function compararRenovacao(a, b) {
@@ -158,5 +171,30 @@ formularioFiltros.addEventListener("submit", (evento) => {
 formularioFiltros.addEventListener("reset", () => setTimeout(atualizarLista));
 document.querySelector("#limpar-filtros-vazio").addEventListener("click", () => formularioFiltros.reset());
 
+// ---------- Cotação do dia (Frankfurter API) ----------
+
+const textoCotacao = document.querySelector("#cotacao-texto");
+const botaoTentarCotacao = document.querySelector("#tentar-cotacao");
+
+async function carregarCotacoes() {
+  erroCotacao = false;
+  botaoTentarCotacao.hidden = true;
+  textoCotacao.textContent = "Consultando cotação…";
+
+  try {
+    cotacoes = await buscarCotacoes();
+    textoCotacao.textContent = `${descreverCotacoes(cotacoes)} (cotação de ${formatarData(cotacoes.data)})`;
+  } catch (erro) {
+    console.error("Falha ao consultar a Frankfurter API.", erro);
+    erroCotacao = true;
+    textoCotacao.textContent = "Cotação indisponível. Tente novamente.";
+    botaoTentarCotacao.hidden = false;
+  }
+  atualizarLista();
+}
+
+botaoTentarCotacao.addEventListener("click", carregarCotacoes);
+
 exibirMensagemGuardada(mensagemSucesso);
 atualizarLista();
+carregarCotacoes();

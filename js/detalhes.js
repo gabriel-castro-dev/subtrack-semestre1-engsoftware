@@ -44,10 +44,58 @@ function exibirDetalhes(assinatura) {
   cartaoDetalhes.hidden = false;
 }
 
+// ---------- Conversão para reais (Frankfurter API) ----------
+
+const notaCotacao = document.querySelector("#nota-cotacao");
+const textoCotacao = document.querySelector("#cotacao-texto");
+const botaoTentarCotacao = document.querySelector("#tentar-cotacao");
+
+function exibirValoresEmReais(cotacoes, situacao) {
+  const emReais = converterParaReais(assinatura.valor, assinatura.moeda, cotacoes);
+  const mensal = valorMensalEmReais(assinatura, cotacoes);
+
+  if (emReais === null) {
+    const texto = situacao === "erro" ? "Cotação indisponível" : "Consultando cotação…";
+    preencherCampo("em-reais", texto);
+    preencherCampo("mensal", texto);
+    return;
+  }
+
+  const prefixo = assinatura.moeda === "BRL" ? "" : "≈ ";
+  const periodo = assinatura.periodicidade === "anual" ? "por ano" : "por mês";
+  preencherCampo("em-reais", `${prefixo}${formatarMoeda(emReais)} ${periodo}`);
+  preencherCampo("mensal", `${prefixo}${formatarMoeda(mensal)} por mês`);
+}
+
+async function carregarCotacoes() {
+  botaoTentarCotacao.hidden = true;
+  textoCotacao.textContent = "Consultando cotação…";
+  exibirValoresEmReais(null, "carregando");
+
+  try {
+    const cotacoes = await buscarCotacoes();
+    textoCotacao.textContent = `${descreverCotacoes(cotacoes)} (cotação de ${formatarData(cotacoes.data)})`;
+    exibirValoresEmReais(cotacoes, "ok");
+  } catch (erro) {
+    console.error("Falha ao consultar a Frankfurter API.", erro);
+    textoCotacao.textContent = "Cotação indisponível. Tente novamente.";
+    botaoTentarCotacao.hidden = false;
+    exibirValoresEmReais(null, "erro");
+  }
+}
+
+botaoTentarCotacao.addEventListener("click", carregarCotacoes);
+
 exibirMensagemGuardada(document.querySelector("#mensagem-sucesso"));
 
 if (assinatura) {
   exibirDetalhes(assinatura);
+  if (assinatura.moeda === "BRL") {
+    exibirValoresEmReais(null, "ok");
+  } else {
+    notaCotacao.hidden = false;
+    carregarCotacoes();
+  }
 } else {
   naoEncontrada.hidden = false;
 }

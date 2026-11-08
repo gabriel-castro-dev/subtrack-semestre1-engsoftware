@@ -99,6 +99,71 @@ function validar(dados) {
   return erros;
 }
 
+// ---------- Estimativa em reais (Frankfurter API) ----------
+
+const estimativaValor = document.querySelector("#estimativa-valor");
+const estimativaDetalhe = document.querySelector("#estimativa-detalhe");
+const botaoTentarCotacao = document.querySelector("#tentar-cotacao");
+
+let cotacoes = null;
+let situacaoCotacao = "carregando"; // "carregando", "ok" ou "erro"
+
+function atualizarEstimativa() {
+  const valor = Number(campos.valor.value);
+  const moeda = campos.moeda.value;
+  const anual = campos.periodicidade.value === "anual";
+
+  botaoTentarCotacao.hidden = true;
+  estimativaDetalhe.textContent = "";
+
+  if (!(valor > 0)) {
+    estimativaValor.textContent = "Preencha o valor para ver a estimativa.";
+    return;
+  }
+
+  if (moeda !== "BRL" && cotacoes === null) {
+    if (situacaoCotacao === "erro") {
+      estimativaValor.textContent = "Cotação indisponível. Tente novamente.";
+      estimativaDetalhe.textContent = "Você pode salvar mesmo assim: o valor original fica registrado.";
+      botaoTentarCotacao.hidden = false;
+    } else {
+      estimativaValor.textContent = "Consultando cotação…";
+    }
+    return;
+  }
+
+  const emReais = converterParaReais(valor, moeda, cotacoes);
+  const prefixo = moeda === "BRL" ? "" : "≈ ";
+  estimativaValor.textContent = `${prefixo}${formatarMoeda(emReais)} ${anual ? "por ano" : "por mês"}`;
+
+  const detalhes = [];
+  if (anual) {
+    detalhes.push(`Equivale a ${formatarMoeda(emReais / 12)} por mês.`);
+  }
+  if (moeda !== "BRL") {
+    detalhes.push(`Cotação de ${formatarData(cotacoes.data)}: ${formatarMoeda(1, moeda)} = ${formatarMoeda(cotacoes[moeda])}. A cotação pode mudar até a cobrança.`);
+  }
+  estimativaDetalhe.textContent = detalhes.join(" ");
+}
+
+async function carregarCotacoes() {
+  situacaoCotacao = "carregando";
+  atualizarEstimativa();
+  try {
+    cotacoes = await buscarCotacoes();
+    situacaoCotacao = "ok";
+  } catch (erro) {
+    console.error("Falha ao consultar a Frankfurter API.", erro);
+    situacaoCotacao = "erro";
+  }
+  atualizarEstimativa();
+}
+
+for (const campo of [campos.valor, campos.moeda, campos.periodicidade]) {
+  campo.addEventListener("input", atualizarEstimativa);
+}
+botaoTentarCotacao.addEventListener("click", carregarCotacoes);
+
 // ---------- Edição: preenche o formulário com os dados salvos ----------
 
 function preencherFormulario(assinatura) {
@@ -173,3 +238,5 @@ formulario.addEventListener("submit", (evento) => {
 for (const nome in campos) {
   campos[nome].addEventListener("input", () => limparErro(campos[nome]));
 }
+
+carregarCotacoes();

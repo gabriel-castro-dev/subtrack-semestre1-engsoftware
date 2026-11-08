@@ -45,6 +45,10 @@
         <dd data-campo="moeda"></dd>
         <dt>Periodicidade</dt>
         <dd data-campo="periodicidade"></dd>
+        <dt>Valor em reais</dt>
+        <dd data-campo="em-reais"></dd>
+        <dt>Equivalente mensal</dt>
+        <dd data-campo="mensal"></dd>
         <dt>Data de renovação</dt>
         <dd data-campo="renovacao"></dd>
         <dt>Situação da renovação</dt>
@@ -60,6 +64,13 @@
         <li><a href="../index.html" class="botao botao-secundario">Voltar para a lista de assinaturas</a></li>
       </ul>
     </article>
+
+    <aside id="nota-cotacao" class="nota" hidden>
+      <h2>Sobre a conversão</h2>
+      <p id="cotacao-texto" class="cotacao-texto" aria-live="polite">Consultando cotação…</p>
+      <p>O valor em reais é uma estimativa feita com a cotação de referência da Frankfurter API e pode mudar até a data da cobrança.</p>
+      <button id="tentar-cotacao" type="button" class="botao botao-secundario" hidden>Tentar novamente</button>
+    </aside>
 
     <div id="nao-encontrada" class="estado-vazio" hidden>
       <h2>Assinatura não encontrada</h2>
