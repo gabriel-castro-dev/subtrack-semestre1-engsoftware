@@ -7,6 +7,8 @@ const contadorLista = document.querySelector("#contador-lista");
 const listaVazia = document.querySelector("#lista-vazia");
 const tabelaContainer = document.querySelector(".tabela-container");
 const mensagemSucesso = document.querySelector("#mensagem-sucesso");
+const formularioFiltros = document.querySelector("#filtros");
+const semResultados = document.querySelector("#sem-resultados");
 
 let assinaturas = carregarAssinaturas();
 
@@ -74,12 +76,53 @@ function renderizarLista(lista) {
   }
 
   const vazia = assinaturas.length === 0;
+  const semNenhumResultado = !vazia && lista.length === 0;
   listaVazia.hidden = !vazia;
-  tabelaContainer.hidden = vazia;
+  semResultados.hidden = !semNenhumResultado;
+  tabelaContainer.hidden = vazia || semNenhumResultado;
   contadorLista.textContent = vazia
     ? ""
     : `${lista.length} de ${assinaturas.length} assinaturas exibidas.`;
 }
 
+// ---------- Pesquisa e filtros ----------
+
+// Remove acentos e maiúsculas para comparar textos ("Música" → "musica")
+function normalizar(texto) {
+  return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function lerFiltros() {
+  return {
+    busca: normalizar(formularioFiltros.elements.busca.value.trim()),
+    categoria: formularioFiltros.elements.categoria.value,
+    status: formularioFiltros.elements.status.value,
+  };
+}
+
+function filtrarAssinaturas(lista, filtros) {
+  return lista.filter((item) => {
+    const nomeConfere = normalizar(item.nome).includes(filtros.busca);
+    const categoriaConfere = filtros.categoria === "todas" || item.categoria === filtros.categoria;
+    const statusConfere = filtros.status === "todos" || item.status === filtros.status;
+    return nomeConfere && categoriaConfere && statusConfere;
+  });
+}
+
+function atualizarLista() {
+  const resultado = filtrarAssinaturas(assinaturas, lerFiltros());
+  renderizarLista(resultado);
+}
+
+// A lista é atualizada enquanto a pessoa digita ou troca um filtro
+formularioFiltros.addEventListener("input", atualizarLista);
+formularioFiltros.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  atualizarLista();
+});
+// O evento "reset" acontece antes de os campos voltarem ao padrão
+formularioFiltros.addEventListener("reset", () => setTimeout(atualizarLista));
+document.querySelector("#limpar-filtros-vazio").addEventListener("click", () => formularioFiltros.reset());
+
 exibirMensagemGuardada(mensagemSucesso);
-renderizarLista(assinaturas);
+atualizarLista();

@@ -70,7 +70,7 @@
 
     <section class="cartao">
       <h2>Pesquisar e organizar</h2>
-      <form class="filtros">
+      <form id="filtros" class="filtros" role="search">
         <p class="campo campo-busca">
           <label for="busca">Buscar serviço</label>
           <input type="search" id="busca" name="busca">
@@ -105,7 +105,6 @@
           </select>
         </p>
         <p class="filtros-acoes">
-          <button type="button" class="botao botao-primario">Aplicar</button>
           <button type="reset" class="botao botao-secundario">Limpar filtros</button>
         </p>
       </form>
@@ -136,6 +135,11 @@
         <h3>Nenhuma assinatura cadastrada</h3>
         <p>Cadastre o primeiro serviço que você acompanha para ver os custos e as renovações.</p>
         <a href="pages/cadastro.html" class="botao botao-primario">+ Cadastrar assinatura</a>
+      </div>
+      <div id="sem-resultados" class="estado-vazio" hidden>
+        <h3>Nenhuma assinatura encontrada</h3>
+        <p>Nenhum serviço corresponde à pesquisa e aos filtros escolhidos.</p>
+        <button id="limpar-filtros-vazio" type="button" class="botao botao-secundario">Limpar filtros</button>
       </div>
     </section>
   </main>
