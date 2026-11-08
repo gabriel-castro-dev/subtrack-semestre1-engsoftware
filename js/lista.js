@@ -171,6 +171,81 @@ formularioFiltros.addEventListener("submit", (evento) => {
 formularioFiltros.addEventListener("reset", () => setTimeout(atualizarLista));
 document.querySelector("#limpar-filtros-vazio").addEventListener("click", () => formularioFiltros.reset());
 
+// ---------- Resumo dos gastos e próximas renovações ----------
+
+// Os totais consideram todas as assinaturas ativas, independentemente dos filtros
+function renderizarResumo() {
+  const ativas = assinaturas.filter((item) => item.status === "ativa");
+  let mensal = 0;
+  const semConversao = [];
+
+  for (const item of ativas) {
+    const valorMensal = valorMensalEmReais(item, cotacoes);
+    if (valorMensal === null) {
+      semConversao.push(item.nome);
+    } else {
+      mensal += valorMensal;
+    }
+  }
+
+  const aviso = document.querySelector("#resumo-aviso");
+  document.querySelector("#resumo-ativas").textContent = ativas.length;
+
+  // Evita apresentar uma soma incompleta como se fosse o total
+  if (semConversao.length > 0) {
+    document.querySelector("#resumo-mensal").textContent = "—";
+    document.querySelector("#resumo-anual").textContent = "—";
+    aviso.textContent = erroCotacao
+      ? `Não foi possível converter ${semConversao.join(", ")} para reais. Os totais aparecem quando a cotação estiver disponível.`
+      : "Consultando cotação para calcular os totais…";
+    aviso.hidden = false;
+  } else {
+    document.querySelector("#resumo-mensal").textContent = formatarMoeda(mensal);
+    document.querySelector("#resumo-anual").textContent = formatarMoeda(mensal * 12);
+    aviso.hidden = true;
+  }
+}
+
+function renderizarRenovacoes() {
+  const listaRenovacoes = document.querySelector("#renovacoes-lista");
+  const proximas = assinaturas
+    .filter((item) => item.status === "ativa" && diasAte(item.renovacao) >= 0 && diasAte(item.renovacao) <= 7)
+    .sort((a, b) => a.renovacao.localeCompare(b.renovacao));
+
+  listaRenovacoes.innerHTML = "";
+  let total = 0;
+  let totalCompleto = true;
+
+  for (const item of proximas) {
+    const emReais = converterParaReais(item.valor, item.moeda, cotacoes);
+    if (emReais === null) {
+      totalCompleto = false;
+    } else {
+      total += emReais;
+    }
+
+    const data = criarElemento("time", "", formatarData(item.renovacao));
+    data.dateTime = item.renovacao;
+    const linha = document.createElement("li");
+    linha.append(
+      criarElemento("span", "", item.nome),
+      data,
+      criarElemento("span", "", formatarMoeda(item.valor, item.moeda)),
+    );
+    listaRenovacoes.append(linha);
+  }
+
+  const textoTotal = totalCompleto ? formatarMoeda(total) : "—";
+  document.querySelector("#renovacoes-total").textContent =
+    proximas.length > 0 ? `Próximos 7 dias: ${textoTotal}` : "Próximos 7 dias";
+  document.querySelector("#renovacoes-vazia").hidden = proximas.length > 0;
+}
+
+function renderizarPainel() {
+  renderizarResumo();
+  renderizarRenovacoes();
+}
+
 // ---------- Cotação do dia (Frankfurter API) ----------
 
 const textoCotacao = document.querySelector("#cotacao-texto");
@@ -191,10 +266,12 @@ async function carregarCotacoes() {
     botaoTentarCotacao.hidden = false;
   }
   atualizarLista();
+  renderizarPainel();
 }
 
 botaoTentarCotacao.addEventListener("click", carregarCotacoes);
 
 exibirMensagemGuardada(mensagemSucesso);
 atualizarLista();
+renderizarPainel();
 carregarCotacoes();

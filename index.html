@@ -38,28 +38,27 @@
       <dl class="resumo-lista">
         <div class="resumo-item">
           <dt>Mensal equivalente</dt>
-          <dd>R$ 147,70</dd>
+          <dd id="resumo-mensal">—</dd>
         </div>
         <div class="resumo-item">
           <dt>Anual estimado</dt>
-          <dd>R$ 1.772,40</dd>
+          <dd id="resumo-anual">—</dd>
         </div>
         <div class="resumo-item">
           <dt>Assinaturas ativas</dt>
-          <dd>5</dd>
+          <dd id="resumo-ativas">0</dd>
         </div>
       </dl>
       <p class="texto-suave">Somente assinaturas ativas entram no resumo. Assinaturas anuais são distribuídas em 12 meses.</p>
+      <p id="resumo-aviso" class="resumo-aviso" hidden></p>
     </section>
 
     <div class="paineis">
       <section class="renovacoes">
         <h2>Próximas renovações</h2>
-        <p><strong>Próximos 7 dias: R$ 61,80</strong></p>
-        <ul class="renovacoes-lista">
-          <li><span>Spotify</span> <time datetime="2026-10-22">22/10/2026</time> <span>R$ 21,90</span></li>
-          <li><span>Netflix</span> <time datetime="2026-10-25">25/10/2026</time> <span>R$ 39,90</span></li>
-        </ul>
+        <p><strong id="renovacoes-total">Próximos 7 dias</strong></p>
+        <ul id="renovacoes-lista" class="renovacoes-lista"></ul>
+        <p id="renovacoes-vazia" hidden>Nenhuma renovação nos próximos 7 dias.</p>
       </section>
 
       <aside class="nota">

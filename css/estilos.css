@@ -967,3 +967,10 @@ select:focus-visible {
 .estimativa .botao {
   margin-top: var(--espaco-3);
 }
+
+/* ---------- 17. Resumo calculado ---------- */
+.resumo-aviso {
+  margin: var(--espaco-2) 0 0;
+  color: #8f1c13;
+  font-size: 0.9rem;
+}
