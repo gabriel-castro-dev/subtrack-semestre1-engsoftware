@@ -86,6 +86,11 @@ function criarDadosIniciais() {
   ];
 }
 
+// Cria um identificador único para uma nova assinatura
+function gerarId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+
 function salvarAssinaturas(lista) {
   localStorage.setItem(CHAVE_ARMAZENAMENTO, JSON.stringify(lista));
 }
@@ -129,4 +134,20 @@ function criarAvatar(assinatura) {
 function criarEtiquetaStatus(status) {
   const texto = status === "ativa" ? "Ativa" : "Inativa";
   return criarElemento("span", `status status-${status}`, texto);
+}
+
+// ---------- Mensagens entre páginas ----------
+
+// Guarda uma mensagem para ser exibida na próxima página aberta
+function guardarMensagem(texto) {
+  sessionStorage.setItem("subtrack:mensagem", texto);
+}
+
+// Exibe (e apaga) a mensagem guardada, se houver
+function exibirMensagemGuardada(elemento) {
+  const texto = sessionStorage.getItem("subtrack:mensagem");
+  if (!texto) return;
+  sessionStorage.removeItem("subtrack:mensagem");
+  elemento.textContent = texto;
+  elemento.hidden = false;
 }

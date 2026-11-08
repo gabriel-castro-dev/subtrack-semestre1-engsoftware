@@ -26,9 +26,9 @@
     <p><a href="../index.html" class="link-voltar"><span aria-hidden="true">←</span> Voltar para assinaturas</a></p>
     <h1>Nova assinatura</h1>
     <p class="subtitulo">Preencha os dados do serviço que você acompanha. Todos os campos são obrigatórios.</p>
-    <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. O botão "Salvar assinatura" ainda não salva informações.</p>
+    <p id="mensagem-formulario" class="mensagem" role="alert" hidden></p>
 
-    <form class="cartao formulario">
+    <form id="formulario-assinatura" class="cartao formulario" novalidate>
       <fieldset class="formulario-campos">
         <legend>Dados da assinatura</legend>
 
@@ -94,7 +94,7 @@
 
       <p class="formulario-acoes">
         <a href="../index.html" class="botao botao-secundario">Cancelar</a>
-        <button type="button" class="botao botao-primario">Salvar assinatura</button>
+        <button type="submit" class="botao botao-primario">Salvar assinatura</button>
       </p>
     </form>
   </main>
@@ -102,5 +102,8 @@
   <footer class="rodape">
     <p>SubTrack — Etapa 2: interface com HTML e CSS.</p>
   </footer>
+
+  <script src="../js/dados.js"></script>
+  <script src="../js/formulario.js"></script>
 </body>
 </html>

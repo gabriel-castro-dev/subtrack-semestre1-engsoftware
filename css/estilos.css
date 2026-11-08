@@ -908,3 +908,40 @@ select:focus-visible {
 [hidden] {
   display: none !important;
 }
+
+/* ---------- 15. Validação e mensagens de retorno ---------- */
+.campo-erro {
+  color: #b42318;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.campo-erro:empty {
+  display: none;
+}
+
+.campo input[aria-invalid="true"],
+.campo select[aria-invalid="true"] {
+  border-color: #b42318;
+  background-color: #fdecea;
+}
+
+.mensagem {
+  padding: var(--espaco-3);
+  border: 1px solid;
+  border-left-width: 4px;
+  border-radius: var(--raio);
+  font-weight: 600;
+}
+
+.mensagem-sucesso {
+  border-color: #9fd0aa;
+  background-color: #e3f1e6;
+  color: #1d5e2c;
+}
+
+.mensagem-erro {
+  border-color: #f1b8b2;
+  background-color: #fdecea;
+  color: #8f1c13;
+}

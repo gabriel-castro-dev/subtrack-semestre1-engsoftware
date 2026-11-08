@@ -6,6 +6,7 @@ const corpoTabela = document.querySelector("#corpo-tabela");
 const contadorLista = document.querySelector("#contador-lista");
 const listaVazia = document.querySelector("#lista-vazia");
 const tabelaContainer = document.querySelector(".tabela-container");
+const mensagemSucesso = document.querySelector("#mensagem-sucesso");
 
 let assinaturas = carregarAssinaturas();
 
@@ -80,4 +81,5 @@ function renderizarLista(lista) {
     : `${lista.length} de ${assinaturas.length} assinaturas exibidas.`;
 }
 
+exibirMensagemGuardada(mensagemSucesso);
 renderizarLista(assinaturas);
