@@ -1,5 +1,5 @@
 // ==========================================================
-// SubTrack — formulário de cadastro de assinaturas
+// SubTrack — formulário de cadastro e edição de assinaturas
 // ==========================================================
 
 const formulario = document.querySelector("#formulario-assinatura");
@@ -16,6 +16,11 @@ const campos = {
 };
 
 let assinaturas = carregarAssinaturas();
+
+// Na página de edição o endereço traz o id (editar.html?id=...)
+const idEdicao = obterIdDaUrl();
+const emEdicao = idEdicao !== null;
+const assinaturaEditada = emEdicao ? assinaturas.find((item) => item.id === idEdicao) : null;
 
 // ---------- Mensagens de erro dos campos ----------
 
@@ -58,7 +63,7 @@ function validar(dados) {
     erros.nome = "Use no máximo 60 caracteres.";
   } else {
     const repetida = assinaturas.some(
-      (item) => item.nome.toLowerCase() === dados.nome.toLowerCase() && item.id !== dados.id,
+      (item) => item.nome.toLowerCase() === dados.nome.toLowerCase() && item.id !== idEdicao,
     );
     if (repetida) erros.nome = "Já existe uma assinatura com esse nome.";
   }
@@ -92,6 +97,27 @@ function validar(dados) {
   }
 
   return erros;
+}
+
+// ---------- Edição: preenche o formulário com os dados salvos ----------
+
+function preencherFormulario(assinatura) {
+  for (const nome in campos) {
+    campos[nome].value = assinatura[nome];
+  }
+  campos.valor.value = assinatura.valor.toFixed(2);
+  document.querySelector("#nome-edicao").textContent = assinatura.nome;
+  document.querySelector("#link-cancelar").href = `detalhes.html?id=${encodeURIComponent(assinatura.id)}`;
+  document.title = `Editar ${assinatura.nome} | SubTrack — Controle de Assinaturas`;
+}
+
+if (emEdicao) {
+  if (assinaturaEditada) {
+    preencherFormulario(assinaturaEditada);
+  } else {
+    formulario.hidden = true;
+    document.querySelector("#nao-encontrada").hidden = false;
+  }
 }
 
 // ---------- Envio ----------
@@ -128,11 +154,19 @@ formulario.addEventListener("submit", (evento) => {
     return;
   }
 
-  const nova = { id: gerarId(), ...dados };
-  assinaturas.push(nova);
-  salvarAssinaturas(assinaturas);
-  guardarMensagem(`${nova.nome} foi cadastrada com sucesso.`);
-  window.location.href = "../index.html";
+  if (emEdicao) {
+    const posicao = assinaturas.findIndex((item) => item.id === idEdicao);
+    assinaturas[posicao] = { ...dados, id: idEdicao };
+    salvarAssinaturas(assinaturas);
+    guardarMensagem("Alterações salvas com sucesso.");
+    window.location.href = `detalhes.html?id=${encodeURIComponent(idEdicao)}`;
+  } else {
+    const nova = { id: gerarId(), ...dados };
+    assinaturas.push(nova);
+    salvarAssinaturas(assinaturas);
+    guardarMensagem(`${nova.nome} foi cadastrada com sucesso.`);
+    window.location.href = "../index.html";
+  }
 });
 
 // Remove o erro do campo assim que a pessoa corrige o valor

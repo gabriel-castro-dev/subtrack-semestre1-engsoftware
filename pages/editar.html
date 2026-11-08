@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar assinatura Notion | SubTrack — Controle de Assinaturas</title>
+  <title>Editar assinatura | SubTrack — Controle de Assinaturas</title>
   <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
@@ -25,16 +25,16 @@
   <main class="conteudo conteudo-estreito">
     <p><a href="../index.html" class="link-voltar"><span aria-hidden="true">←</span> Voltar para assinaturas</a></p>
     <h1>Editar assinatura</h1>
-    <p class="subtitulo">Altere os dados da assinatura Notion. Todos os campos são obrigatórios.</p>
-    <p class="aviso"><strong>Aviso:</strong> esta etapa utiliza dados demonstrativos. O botão "Salvar alterações" ainda não salva informações.</p>
+    <p class="subtitulo">Altere os dados de <strong id="nome-edicao">uma assinatura</strong>. Todos os campos são obrigatórios.</p>
+    <p id="mensagem-formulario" class="mensagem" role="alert" hidden></p>
 
-    <form class="cartao formulario">
+    <form id="formulario-assinatura" class="cartao formulario" novalidate>
       <fieldset class="formulario-campos">
         <legend>Dados da assinatura</legend>
 
         <p class="campo campo-largo">
           <label for="nome">Nome do serviço</label>
-          <input type="text" id="nome" name="nome" value="Notion" required>
+          <input type="text" id="nome" name="nome" required>
         </p>
 
         <p class="campo campo-largo">
@@ -43,7 +43,7 @@
             <option value="">Selecione uma categoria</option>
             <option value="musica">Música</option>
             <option value="video">Vídeo</option>
-            <option value="produtividade" selected>Produtividade</option>
+            <option value="produtividade">Produtividade</option>
             <option value="armazenamento">Armazenamento</option>
             <option value="educacao">Educação</option>
             <option value="outros">Outros</option>
@@ -52,7 +52,7 @@
 
         <p class="campo">
           <label for="valor">Valor</label>
-          <input type="number" id="valor" name="valor" min="0.01" step="0.01" aria-describedby="valor-ajuda" value="10.00" required>
+          <input type="number" id="valor" name="valor" min="0.01" step="0.01" aria-describedby="valor-ajuda" required>
           <small id="valor-ajuda" class="campo-ajuda">Número maior que zero, com até duas casas decimais.</small>
         </p>
 
@@ -60,7 +60,7 @@
           <label for="moeda">Moeda</label>
           <select id="moeda" name="moeda" required>
             <option value="BRL">BRL — Real brasileiro</option>
-            <option value="USD" selected>USD — Dólar americano</option>
+            <option value="USD">USD — Dólar americano</option>
             <option value="EUR">EUR — Euro</option>
           </select>
         </p>
@@ -68,20 +68,20 @@
         <p class="campo">
           <label for="periodicidade">Periodicidade</label>
           <select id="periodicidade" name="periodicidade" required>
-            <option value="mensal" selected>Mensal</option>
+            <option value="mensal">Mensal</option>
             <option value="anual">Anual</option>
           </select>
         </p>
 
         <p class="campo">
           <label for="renovacao">Data de renovação</label>
-          <input type="date" id="renovacao" name="renovacao" value="2026-10-29" required>
+          <input type="date" id="renovacao" name="renovacao" required>
         </p>
 
         <p class="campo campo-largo">
           <label for="status">Status</label>
           <select id="status" name="status" required>
-            <option value="ativa" selected>Ativa</option>
+            <option value="ativa">Ativa</option>
             <option value="inativa">Inativa</option>
           </select>
         </p>
@@ -93,14 +93,23 @@
       </aside>
 
       <p class="formulario-acoes">
-        <a href="detalhes.html" class="botao botao-secundario">Cancelar</a>
-        <button type="button" class="botao botao-primario">Salvar alterações</button>
+        <a id="link-cancelar" href="../index.html" class="botao botao-secundario">Cancelar</a>
+        <button type="submit" class="botao botao-primario">Salvar alterações</button>
       </p>
     </form>
+
+    <div id="nao-encontrada" class="estado-vazio" hidden>
+      <h2>Assinatura não encontrada</h2>
+      <p>Ela pode ter sido excluída ou o endereço está incompleto.</p>
+      <a href="../index.html" class="botao botao-primario">Ver todas as assinaturas</a>
+    </div>
   </main>
 
   <footer class="rodape">
     <p>SubTrack — Etapa 2: interface com HTML e CSS.</p>
   </footer>
+
+  <script src="../js/dados.js"></script>
+  <script src="../js/formulario.js"></script>
 </body>
 </html>
