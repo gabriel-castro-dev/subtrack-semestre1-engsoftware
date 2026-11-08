@@ -879,3 +879,32 @@ select:focus-visible {
     font-size: 1.75rem;
   }
 }
+
+/* ---------- 14. Estados da listagem ---------- */
+.estado-vazio {
+  padding: var(--espaco-5) var(--espaco-4);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  text-align: center;
+}
+
+.estado-vazio p {
+  color: var(--cor-texto-suave);
+}
+
+.etiqueta-revisar {
+  display: inline-block;
+  margin-left: var(--espaco-1);
+  padding: 0.125rem var(--espaco-2);
+  border-radius: 0.25rem;
+  background-color: #fdecea;
+  color: #8f1c13;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+[hidden] {
+  display: none !important;
+}
